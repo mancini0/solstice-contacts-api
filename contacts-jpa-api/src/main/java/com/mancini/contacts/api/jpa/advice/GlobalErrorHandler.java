@@ -1,6 +1,7 @@
 package com.mancini.contacts.api.jpa.advice;
 
 import org.springframework.data.rest.core.RepositoryConstraintViolationException;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -22,6 +23,19 @@ public class GlobalErrorHandler {
 
     @ExceptionHandler(NoHandlerFoundException.class)
     public ResponseEntity<Map<String,Object>> pathNotFound(final Exception e) {
+
+        Map<String,Object> errorInfo = new LinkedHashMap<>();
+        errorInfo.put("timestamp", new Date());
+        errorInfo.put("errorMessage",e.getMessage());
+        errorInfo.put("httpCode", HttpStatus.NOT_FOUND.value());
+        errorInfo.put("httpStatus", HttpStatus.NOT_FOUND.getReasonPhrase());
+        return new ResponseEntity<Map<String,Object>>(errorInfo, HttpStatus.NOT_FOUND);
+
+    }
+
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<Map<String,Object>> resourceNotFound(final Exception e) {
 
         Map<String,Object> errorInfo = new LinkedHashMap<>();
         errorInfo.put("timestamp", new Date());
