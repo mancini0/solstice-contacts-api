@@ -7,11 +7,11 @@ values
 (5,'Neymar','Santos','Paris Saint Germain',null,'neymar.santos@gmail.com',date '1991-02-05','4252582365','7296241512'),
 (6,'Kylian','Mbappe','Paris Saint Germain',null,'kylian.mbappe@gmail.com',date '1998-12-20','4452582267','7296241513'),
 (7,'Andre','Gignac','Tigres UANL',null,'andre.gignac@gmail.com',date '1998-12-05','4452582268','7296248493'),
-(8,'Wilfried','Zaha','Crystal Palace FC',null,'wildried.zaha@gmail.com',date '1992-11-10','1458953456','6045581367'),
+(8,'Wilfried','Zaha','Crystal Palace FC',null,'wilfried.zaha@gmail.com',date '1992-11-10','1458953456','6045581367'),
 (9,'Alex','Oxlade-Chamberlain','Liverpool FC',null,'alex.oxladechamberlain@gmail.com',date '1993-08-15','1458953456','6045581367'),
-(10,'Diego','Milito', 'Inter Milan',null,'diego.milito@gmail.com',date '1979-06-12','45836419852','45836419853'),
-(11,'Diego','Forlan', 'Atletico Madrid',null,'diego.forlan@gmail.com',date '1979-05-19','45836419854','45836419855'),
-(12,'Diego','Maradona', 'FC Barcelona ',null,'diego.maradona@gmail.com',date '1960-10-30','45836419856','45836419857');
+(10,'Diego','Milito', 'Inter Milan',null,'diego.milito@gmail.com',date '1979-06-12','4583641985','4583641985'),
+(11,'Diego','Forlan', 'Atletico Madrid',null,'diego.forlan@gmail.com',date '1979-05-19','4583641985','4583641985'),
+(12,'Diego','Maradona', 'FC Barcelona ',null,'diego.maradona@gmail.com',date '1960-10-30','4583641256','4583641985');
 
 
 insert into addresses(id, apt , city, province , country, street, street_number, contact_id )
@@ -20,12 +20,12 @@ values
 (78,null,'Lagarto', 'Sergipe', 'Brazil','Pine Street',123,2),
 (79,null,'Salto','Salto Partido', 'Uruguay','Maple Street',123,3),
 (80,'20B','Salto','Salto Partido','Uruguay','Ash Street',123,4),
---Let Neymar have multiple addresses, since he holds the record for highest transfer fee.
+--Let Neymar have multiple addresses
 (81, '20C','Birmingham', 'Alabama', 'United States', 'Albert Einstein Blvd', 123,5),
 (82, '21C','Endicott', 'New York', 'United States', 'Richard Feynman Blvd', 123,5),
 (83, '22C','Bishkek', 'Chuy', 'Kyrgyzstan' ,'Felix Bloch Blvd', 123,5),
---end Neymar multiple addresses
 (84, '23C','Sao Paulo', 'Sao Paulo Province', 'Brazil', 'Simon Bolivar Ave', 123,5),
+--end multiple address
 (85, null,'Bondy', 'lle-de-France','France', 'Marie Curie Blvd', 123,6),
 (86, null,'Martigues', 'Alpes-Cote de Azur', 'France', 'Louis de Broglie Blvd', 123,7),
 (87, null,'Abidjan','Abidjan Province', 'Ivory Coast', 'Alassane Ouattara Ave', 123,8),

@@ -1,4 +1,4 @@
-package com.mancini.contacts.api.jpa.service;
+package com.mancini.contacts.api.jpa.service.dao;
 
 import com.mancini.contacts.domain.jpa.Address;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
