@@ -6,10 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.quartz.QuartzProperties;
+
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -220,21 +219,33 @@ public class ApiTest {
 
     }
 
-    /** POSTing to /contacts should create a new contact. The restful links to the new entities address should
-     * not be populated, since the address information has not been posted.
+    /** POSTing to /contacts should create a new contact.
      * @throws Exception
      */
     @Test
-    public void entityPostsShouldCreateNewRecord() throws Exception {
+    public void entityPostsShouldCreateNewRecordWithNoLinksToAddressInitially() throws Exception {
         //First confirm both the contact to be deleted and its associated addresses exist.
-        String kelly ="{  \"firstName\" : \"Kelly\",  \"lastName\" : \"Jones\", \"mobilePhone\":\"6076247163\" }";
+        String kelly = "{  \"firstName\" : \"Kelly\",  \"lastName\" : \"Jones\", \"mobilePhone\":\"6076247163\" }";
         mockMvc.perform(post("/contacts").contentType(MediaType.APPLICATION_JSON).content(kelly))
-        .andExpect(status().isCreated());
+                .andExpect(status().isCreated());
+
+    }
+    /**
+     * In this example I'll attempt to create a new entity with an invalid email address.
+     * Spring should NOT allow the entity to be persisted, since I've annotated my class
+     * with JSR-303 and Hibernate bean validation annotations. (e.g, @Email )
+     * @throws Exception
+     */
+    @Test
+    public void jsr303BeanValidationShouldPreventInvalidModifications() throws Exception {
+        //First confirm both the contact to be deleted and its associated addresses exist.
+        String kelly ="{  \"firstName\" : \"Kelly\",  \"lastName\" : \"Jones\", \"mobilePhone\":\"6076247163\" ,\"email\":\"somethingInvalid\"}";
+        mockMvc.perform(post("/contacts").contentType(MediaType.APPLICATION_JSON).content(kelly))
+                .andDo(print()).andExpect(status().isBadRequest());
 
         mockMvc.perform(get("/contacts?firstName=Kelly")).andExpect(status().isOk())
-                .andExpect((jsonPath("$._embedded.contacts[*].mobilePhone",
-                        Matchers.containsInAnyOrder("6076247163"))));
-        }
+                .andExpect(jsonPath("$.page.totalElements").value(0));
+    }
 
 }
 

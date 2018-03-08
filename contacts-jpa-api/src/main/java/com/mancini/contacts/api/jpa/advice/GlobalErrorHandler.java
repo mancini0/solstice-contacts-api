@@ -48,14 +48,12 @@ public class GlobalErrorHandler {
 
     @ExceptionHandler(RepositoryConstraintViolationException.class)
     public ResponseEntity<Map<String,Object>> validationError(final RepositoryConstraintViolationException e) {
-
         Map<String,Object> errorInfo = new LinkedHashMap<>();
         errorInfo.put("timestamp", new Date());
         errorInfo.put("errorMessage",e.getErrors().toString());
-        errorInfo.put("httpCode", HttpStatus.INTERNAL_SERVER_ERROR.value());
-        errorInfo.put("httpStatus", HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
-        return new ResponseEntity<Map<String,Object>>(errorInfo, HttpStatus.INTERNAL_SERVER_ERROR);
-
+        errorInfo.put("httpCode", HttpStatus.BAD_REQUEST.value());
+        errorInfo.put("httpStatus", HttpStatus.BAD_REQUEST.getReasonPhrase());
+        return new ResponseEntity<Map<String,Object>>(errorInfo, HttpStatus.BAD_REQUEST);
     }
 
 

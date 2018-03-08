@@ -9,7 +9,7 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapt
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
-/**I would love it if Spring Boot allowed me to apply JSR-303 bean validation annotations
+/**I would love it if Spring Boot allowed me (by default) to apply JSR-303 bean validation annotations
  * on my Entity classes, and validated against those annotations in the web tier, BEFORE
  * attempting to persist to the database. Olivier Gierke explains why Spring-Data does not
  * do so as the default behavior in his comment dated 20160816 here:
@@ -17,7 +17,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
  *
  * Spring's default behavior means that "invalid" POST / PUT requests are returned to the user as
  * HTTP 500s, instead of HTTP 400s. To me, an HTTP 400 seems more appropriate, so I add this configuration
- * class.
+ * class, and handle the exception through my @ControllerAdvice-annotated class.
  *
  *
  */
