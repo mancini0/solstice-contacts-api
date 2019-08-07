@@ -60,8 +60,6 @@ on the classpath. By default, Spring-Data-Rest handles all of the HTTP verbs you
 
      also see http://hibernate.org/validator/
 
-solstice.zip can be found here: https://drive.google.com/file/d/1oPuCnC8EJfAnDMEAwQAMQhrWQJB02Nk4/view?usp=sharing
-
 Usage:
 
 mvn test
