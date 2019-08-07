@@ -64,9 +64,4 @@ solstice.zip can be found here: https://drive.google.com/file/d/1oPuCnC8EJfAnDME
 
 Usage:
 
-  cd ~/
-  git clone https://mike_mancini@bitbucket.org/mike_mancini/solstice.git  (or "unzip solstice.zip")
-  cd ~/solstice
-  mvn clean install
-  cd contacts-jpa-api
-  mvn spring-boot:run 
+mvn test
