@@ -15,7 +15,6 @@
     </properties>
 
     <modules>
-        <module>contacts-elastic-api</module>
         <module>contacts-jpa-api</module>
         <module>contacts-commons</module>
     </modules>
